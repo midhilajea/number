@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Fancy Phone Number</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+            text-align: center; /* Center align content */
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333; /* Blue color for heading */
+            font-size: 28px;
+        }
+
+        form {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            {% comment %} font-weight: bold; /* Make labels bold */ {% endcomment %}
+            text-align: left; /* Align labels to the left */
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: calc(100% - 16px); /* Adjust input width to accommodate padding and border */
+            padding: 8px;
+            margin-bottom: 10px; /* Add some bottom margin for spacing */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 50%; /* Set button width to 50% of the container */
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 20px auto; /* Center button horizontally and add margin from top and bottom */
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            input[type="text"],
+            input[type="number"] {
+                width: calc(100% - 16px); /* Adjust input width to accommodate padding and border */
+            }
+
+            button {
+                width: 100%; /* Set button width to 100% on smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add Fancy Phone Number</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label for="id_number">Number:</label>
+            {{ form.number }}
+            <label for="id_amount">Amount:</label>
+            {{ form.amount }}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fancy Phone Number List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        header {
+            background-color: #007bff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column; /* Display header content in a column */
+        }
+
+        header h1 {
+            margin: 0;
+            color: #fff;
+            font-size: 28px;
+            margin-bottom: 10px; /* Add space between heading and links */
+        }
+
+        .links {
+            display: flex;
+            justify-content: space-between;
+            width: 100%; /* Ensure links take full width */
+        }
+
+        .link {
+            text-decoration: none;
+            color: #fff;
+            font-size: 20px; /* Font size for links */
+        }
+
+        .link.button {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: #fff;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .link.button:hover {
+            background-color: #0056b3;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+
+        .number {
+            flex: 1; /* Expand to fill available space */
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        .price {
+            margin-left: 20px; /* Add space between number and price */
+            margin-right: 15px;
+        }
+
+        .delete-link {
+            color: #fff;
+            background-color: #dc3545;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .delete-link:hover {
+            background-color: #c82333;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .price {
+                margin-left: 0; /* Reset margin */
+                margin-top: 10px; /* Add space between number and price on smaller screens */
+            }
+
+            .delete-link {
+                margin-top: 10px; /* Add space between delete link and number on smaller screens */
+                margin-left: auto; /* Move the delete link to the right */
+            }
+            .links {
+                display: flex;
+                justify-content: space-between;
+                flex-direction: row; /* Ensure links are displayed in a row */
+            }
+
+            .link {
+                margin: 5px 0; /* Adjust margin for links on smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Admin Panel</h1>
+        <div class="links">
+            <a class="link button" href="{% url 'fancy_phone_number' %}">Home</a>
+            <a class="link button" href="{% url 'add_fancy_phone_number' %}">Add New Number</a>
+        </div>
+    </header>
+    <div class="container">
+        <ul>
+            {% for number in fancy_phone_numbers %}
+            <li>
+                <span class="number">{{ number.number }}</span>
+                <span class="price">Price: {{ number.amount }}</span> <!-- Display price range -->
+                <a class="delete-link" href="{% url 'delete_fancy_phone_number' number.id %}">Delete</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

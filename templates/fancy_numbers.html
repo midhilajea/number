@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fancy Numbers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #007bff; /* Setting suitable color as header background */
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; /* Allow items to wrap */
+        }
+
+        header h1 {
+            margin: 0 auto;
+            color: #fff; /* Setting text color for heading */
+            font-size: 28px;
+        }
+
+        .admin-link {
+            text-decoration: none;
+            color: #333; /* Setting text color for admin link */
+            margin-top: 10px; /* Add some space between the heading and the admin link */
+            margin-left: auto; /* Push the link to the right side */
+            padding: 8px 20px; /* Adding padding to style as button */
+            background-color: #fff; /* Setting background color for the button */
+            border-radius: 5px; /* Adding border radius for rounded corners */
+            transition: background-color 0.3s ease; /* Adding transition for hover effect */
+        }
+
+        .admin-link:hover {
+            background-color: #555; /* Changing background color on hover */
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .number {
+            flex: 1;
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        .price {
+            margin-left: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            li {
+                flex-direction: column;
+                align-items: flex-start;
+                margin: 0 auto;
+            }
+
+            .price {
+                margin-left: 0;
+                margin-top: 10px;
+                align-self: flex-end;
+            }
+
+            .delete-link {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Fancy Mobile Numbers</h1>
+        <a class="admin-link" href="{% url 'admin_login' %}">Admin</a>
+    </header>
+
+    <div class="container">
+        <ul>
+            {% for num in numbers %}
+                <li>
+                    <div class="number">{{ num.number }}</div>
+                    <div class="price">Price: {{ num.amount }}</div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
